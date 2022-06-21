@@ -3,7 +3,8 @@ import React from 'react';
 let PokemonList = () => {
     return (
         <React.Fragment>
-            <h2>PokemonList</h2>
+            <section>
+            </section>
         </React.Fragment>
     )
 
