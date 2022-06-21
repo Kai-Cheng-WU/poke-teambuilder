@@ -8,7 +8,11 @@ let NavBar = () => {
             <nav className="navbar navbar-dark bg-dark navbar-expand-md"> 
                 <div className='container'>
                     <Link to ={'/'} className="navbar-brand"> 
-                        <PokeBallShade/><span style={{color:'#ee1515'}}> Poke </span> Teambuilder </Link>
+                        <PokeBallShade/>
+                        <text style={{fontWeight: "bold"} }>
+                        <span style={{color:'#ee1515'} }> Poke </span></text> 
+                        <text style={{fontStyle: "italic", fontWeight: "bold"}}>Teambuilder</text> 
+                    </Link>
                 </div>
                 
 
