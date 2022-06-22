@@ -35,8 +35,43 @@ let Home = () => {
                 </div>
             </section>
 
-            <section className="contact-list">
-
+            <section className="pokemon-list">
+                <div className='container'>
+                    <div className="row">
+                        <div className="col-md-4">
+                            <div className="card">
+                                <div className="card-body">
+                                    <div className="row">
+                                        <div className="col-lg-8">
+                                            Charizard (placeholder)
+                                        </div>
+                                        <div className="col-sm-1 m-1">
+                                            <Link to={'/pokemons/view/:pokeID'} className="btn btn-pokemonprofile">
+                                                <i className='fa-solid fa-eye'/>
+                                            </Link>
+                                        </div>
+                                        <div className="col-sm-1 m-1">
+                                            <Link to={'/pokemons/edit/:pokeID'} className="btn btn-pokemonprofile">
+                                                <i className='fa-solid fa-pen'/>
+                                            </Link>
+                                        </div>
+                                        <div className="col-sm-1 m-1">
+                                            <button className="btn btn-pokemonprofile">
+                                                <i className='fa-solid fa-trash'/>
+                                            </button>
+                                        </div>   
+                                    </div>
+                                        
+                                    <div className="row">
+                                        <div className="col d-flex">
+                                            <img src="https://archives.bulbagarden.net/media/upload/7/7e/006Charizard.png" alt="" className='pokemon-img d-flex'/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
 
         </React.Fragment>
