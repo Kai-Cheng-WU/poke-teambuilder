@@ -1,0 +1,12 @@
+.pokeball-color {
+    color: #ee1515;
+}
+
+
+.stylish-text {
+    font-style: oblique;
+}
+
+.card-container:hover {
+    box-shadow: 5px 5px;
+}
