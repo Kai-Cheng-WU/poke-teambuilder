@@ -3,8 +3,8 @@ import './App.css';
 import {Routes, Route, Navigate} from 'react-router-dom';
 import NavBar from "./components/NavBar/NavBar";
 import Home from "./components/pokemons/Home/Home";
-import AddPokemon from "./components/pokemons/PokemonModals/AddPokemon/AddPokemon";
-import EditPokemon from "./components/pokemons/PokemonModals/EditPokemon/EditPokemon";
+import AddPokemon from "./components/pokemons/PokemonModals/AddPokemon";
+import EditPokemon from "./components/pokemons/PokemonModals/EditPokemon";
 import ViewPokemon from './components/pokemons/ViewPokemon/ViewPokemon';
 
 let App = () => {
