@@ -1,9 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 import '../../../App.css';
 import pokeball from '../../../icons/pokeball.png'
 
 let Home = () => {
+    const [showCreateModal, setShowCreateModal] = useState(false)
+    const openModal = () => {
+        setShowCreateModal(prev => !prev);
+    }
+
+
     return (
         <React.Fragment>
             <section className='contact-search p-3'>
@@ -42,13 +48,8 @@ let Home = () => {
                             <div className="card">
                                 <div className="card-body">
                                     <div className="row">
-                                        <div className="col-lg-8">
+                                        <div className="col-lg-9">
                                             Charizard (placeholder)
-                                        </div>
-                                        <div className="col-sm-1 m-1">
-                                            <Link to={'/pokemons/view/:pokeID'} className="btn btn-pokemonprofile">
-                                                <i className='fa-solid fa-eye'/>
-                                            </Link>
                                         </div>
                                         <div className="col-sm-1 m-1">
                                             <Link to={'/pokemons/edit/:pokeID'} className="btn btn-pokemonprofile">
@@ -63,9 +64,11 @@ let Home = () => {
                                     </div>
                                         
                                     <div className="row">
-                                        <div className="col d-flex">
-                                            <img src="https://archives.bulbagarden.net/media/upload/7/7e/006Charizard.png" alt="" className='pokemon-img d-flex'/>
-                                        </div>
+                                        <Link to={'/pokemons/view/:pokeID'} className="btn btn-pokemonprofile">
+                                            <div className="col d-flex">
+                                                <img src="https://archives.bulbagarden.net/media/upload/7/7e/006Charizard.png" alt="" className='pokemon-img d-flex'/>
+                                            </div>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
