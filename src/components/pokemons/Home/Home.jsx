@@ -2,12 +2,11 @@ import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 import '../../../App.css';
 import pokeball from '../../../icons/pokeball.png'
+import AddPokemon from '../PokemonModals/AddPokemon'
 
 let Home = () => {
-    const [showCreateModal, setShowCreateModal] = useState(false)
-    const openModal = () => {
-        setShowCreateModal(prev => !prev);
-    }
+    const [openAddModal, setOpenAddModal] = useState(false)
+    
 
 
     return (
@@ -17,12 +16,14 @@ let Home = () => {
                     <div className='grid'>
                         <div className='row mb-2'>
                             <div className='col'>
-                                <p className="stylish-text h2 d-flex justify-content-center p-1"> Breed your mons, craft your team!</p>
+                                <p className="stylish-text h2 d-flex justify-content-center p-1"> Breed pokemons, craft the best team!</p>
                                 <p className="h3 p-3 " >MY BOX
-                                    <Link to={'/pokemons/add'} className="btn btn-dark ms-2 stylish-text "> 
-                                    <img src={pokeball} width="32" height="32"/> New Pokemon </Link>
+                                    <button onClick={()=>setOpenAddModal(true)} className="btn btn-dark ms-2 stylish-text "> 
+                                    <img src={pokeball} width="32" height="32"/> New Pokemon </button>
                                 </p>
                             </div>
+                            <AddPokemon open={openAddModal} onClose={()=>setOpenAddModal(false)}/>
+                            
                         </div>
                         <div className='row'>
                             <div className="col-md6">

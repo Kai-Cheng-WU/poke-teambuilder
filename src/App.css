@@ -24,3 +24,18 @@
 .btn-pokemonprofile:hover{
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
+
+.overlay{
+    position:absolute;
+    z-index:5;
+    background-color: white;
+    width:70% !important;
+    height:80% !important;
+    border-style: solid;
+    left:15%;
+}
+
+.modalContainer {
+    width:100%;
+    max-width: 1000px;
+}
