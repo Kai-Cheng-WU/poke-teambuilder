@@ -9,9 +9,9 @@ let NavBar = () => {
                 <div className='container'>
                     <Link to ={'/'} className="navbar-brand"> 
                         <PokeBallShade/>
-                        <text style={{fontWeight: "bold"} }>
-                        <span style={{color:'#ee1515'} }> Poke </span></text> 
-                        <text style={{fontStyle: "italic", fontWeight: "bold"}}>Teambuilder</text> 
+                        <span style={{fontWeight: "bold"} }>
+                        <span style={{color:'#ee1515'} }> Poke </span></span> 
+                        <span style={{fontStyle: "italic", fontWeight: "bold"}}>Teambuilder</span> 
                     </Link>
                 </div>
                 
