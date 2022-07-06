@@ -29,7 +29,7 @@
     z-index:5;
     background-color: white;
     width:70% !important;
-    height:80% !important;
+    height:100% !important;
     border-style: solid;
     left:15%;
 }
@@ -37,4 +37,20 @@
 .modalContainer {
     width:100%;
     max-width: 1000px;
+}
+
+.evField {
+    white-space: nowrap;
+    position: relative;
+    max-width: 120px;
+    justify-content: flex-start;
+}
+
+.ivField {
+    white-space: nowrap;
+    position: relative;
+    max-width: 120px;
+    justify-content: flex-end;
+
+
 }
