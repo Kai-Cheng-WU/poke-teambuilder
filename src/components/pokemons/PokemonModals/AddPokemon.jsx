@@ -80,22 +80,22 @@ let AddPokemon = ({open, onClose}) => {
                             <form style={{maxWidth: "100%"}}>
                                 <h1>{pokemon.name}</h1>
                                 <div className='mb-2'>
-                                    <h3>Health: {pokemon.base_hp} + <input className='evField' type="text" placeholder='hp EV'/> + <input className='ivField' type="text" placeholder='hp IV'/> =  </h3>
+                                    <h3><i class="fa-solid fa-heart"></i>: {pokemon.base_hp} + <input className='evField' type="number" placeholder='hp EV'/> + <input className='ivField' type="number" placeholder='hp IV'/> =  </h3>
                                 </div>
                                 <div className='mb-2'>
-                                    <h3>Attack: {pokemon.base_atk} + <input className='evField' type="text" placeholder='atk EV'/> + <input className='ivField' type="text" placeholder='atk IV'/> =  </h3>
+                                    <h3><i class="fa-solid fa-hand-fist"></i>: {pokemon.base_atk} + <input className='evField' type="number" placeholder='atk EV'/> + <input className='ivField' type="number" placeholder='atk IV'/> =  </h3>
                                 </div>
                                 <div className='mb-2'>
-                                    <h3>Defense: {pokemon.base_def} + <input className='evField' type="text" placeholder='def EV'/> + <input className='ivField' type="text" placeholder='def IV'/> =  </h3>
+                                    <h3><i class="fa-solid fa-shield-halved"></i>: {pokemon.base_def} + <input className='evField' type="number" placeholder='def EV'/> + <input className='ivField' type="number" placeholder='def IV'/> =  </h3>
                                 </div>
                                 <div className='mb-2'>
-                                    <h3>Special Attack: {pokemon.base_spa} + <input className='evField' type="text" placeholder='spa EV'/> + <input className='ivField' type="text" placeholder='spa IV'/> =  </h3>
+                                    <h3><i class="fa-solid fa-wand-sparkles"></i>: {pokemon.base_spa} + <input className='evField' type="number" placeholder='spa EV'/> + <input className='ivField' type="number" placeholder='spa IV'/> =  </h3>
                                 </div>
                                 <div className='mb-2'>
-                                    <h3>Special Defense: {pokemon.base_spd} + <input className='evField' type="text" placeholder='spd EV'/> + <input className='ivField' type="text" placeholder='spd IV'/> =  </h3>
+                                    <h3><i class="fa-solid fa-circle-half-stroke"></i>: {pokemon.base_spd} + <input className='evField' type="number" placeholder='spd EV'/> + <input className='ivField' type="number" placeholder='spd IV'/> =  </h3>
                                 </div>
                                 <div className='mb-2'>
-                                    <h3>Speed: {pokemon.base_spe} + <input className='evField' type="text" placeholder='spe EV'/> + <input className='ivField' type="text" placeholder='spe IV'/> =  </h3>
+                                    <h3><i class="fa-solid fa-person-running"></i>: {pokemon.base_spe} + <input className='evField' type="number" placeholder='spe EV'/> + <input className='ivField' type="number" placeholder='spe IV'/> =  </h3>
                                 </div>
                                 
  
