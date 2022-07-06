@@ -76,7 +76,7 @@ let AddPokemon = ({open, onClose}) => {
                             <img src={pokemon.img} alt="" />
                         </div>
                         
-                        <div className='col-md-4'>
+                        <div className='col-md-12'>
                             <form style={{maxWidth: "100%"}}>
                                 <h1>{pokemon.name}</h1>
                                 <div className='mb-2'>
