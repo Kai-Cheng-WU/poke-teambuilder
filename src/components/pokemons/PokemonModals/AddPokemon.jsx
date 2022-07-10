@@ -9,13 +9,40 @@ let AddPokemon = ({open, onClose}) => {
         name: "",
         species: "",
         img: "",
-        base_hp: "",
-        base_atk: "",
-        base_def: "",
-        base_spa: "",
-        base_spd: "",
-        base_spe: "",
+        base_hp: 0,
+        base_atk: 0,
+        base_def: 0,
+        base_spa: 0,
+        base_spd: 0,
+        base_spe: 0,
     });
+    const [hpEV, setHpEV] = useState(0);
+    const [hpIV, setHpIV] = useState(0);
+    const [hpTotal, setHpTotal] = useState(0);
+
+    const [atkEV, setAtkEV] = useState(0);
+    const [atkIV, setAtkIV] = useState(0);
+    const [atkTotal, setAtkTotal] = useState(0);
+
+    const [defEV, setDefEV] = useState(0);
+    const [defIV, setDefIV] = useState(0);
+    const [defTotal, setDefTotal] = useState(0);
+
+    const [spaEV, setSpaEV] = useState(0);
+    const [spaIV, setSpaIV] = useState(0);
+    const [spaTotal, setSpaTotal] = useState(0);
+
+    const [spdEV, setSpdEV] = useState(0);
+    const [spdIV, setSpdIV] = useState(0);
+    const [spdTotal, setSpdTotal] = useState(0);
+
+    const [speEV, setSpeEV] = useState(0);
+    const [speIV, setSpeIV] = useState(0);
+    const [speTotal, setSpeTotal] = useState(0);
+
+    function calculateStatsTotal() {
+        setHpTotal(hpEV+hpIV+pokemon.base_hp);
+    }
 
     const searchPokemon = (event) => {
         event.preventDefault();
@@ -80,25 +107,38 @@ let AddPokemon = ({open, onClose}) => {
                             <form style={{maxWidth: "100%"}}>
                                 <h1>{pokemon.name}</h1>
                                 <div className='mb-2'>
-                                    <h3><i class="fa-solid fa-heart"></i>: {pokemon.base_hp} + <input className='evField' type="number" placeholder='hp EV' min="0" max="252" step="4"/> + <input className='ivField' type="number" placeholder='hp IV' min="0" max="31"/> =  </h3>
+                                    <h3><i className="fa-solid fa-heart"></i>: {pokemon.base_hp} + 
+                                        <input className='evField' type="number" min="0" max="252" step="4" value={hpEV} onChange={e => setHpEV(+e.target.value)}/> + 
+                                        <input className='ivField' type="number" min="0" max="31" value={hpIV} onChange={e => setHpIV(+e.target.value)}/> =  
+                                        {hpTotal}</h3>
                                 </div>
                                 <div className='mb-2'>
-                                    <h3><i class="fa-solid fa-hand-fist"></i>: {pokemon.base_atk} + <input className='evField' type="number" placeholder='atk EV' min="0" max="252" step="4"/> + <input className='ivField' type="number" placeholder='atk IV' min="0" max="31"/> =  </h3>
+                                    <h3><i className="fa-solid fa-hand-fist"></i>: {pokemon.base_atk} + 
+                                    <input className='evField' type="number"  min="0" max="252" step="4" value={atkEV} onChange={e => setAtkEV(+e.target.value)}/> + 
+                                    <input className='ivField' type="number"  min="0" max="31" value={atkIV} onChange={e => setAtkIV(+e.target.value)}/> =  </h3>
                                 </div>
                                 <div className='mb-2'>
-                                    <h3><i class="fa-solid fa-shield-halved"></i>: {pokemon.base_def} + <input className='evField' type="number" placeholder='def EV' min="0" max="252" step="4"/> + <input className='ivField' type="number" placeholder='def IV' min="0" max="31"/> =  </h3>
+                                    <h3><i className="fa-solid fa-shield-halved"></i>: {pokemon.base_def} + 
+                                    <input className='evField' type="number" min="0" max="252" step="4" value={defEV} onChange={e => setDefEV(+e.target.value)}/> + 
+                                    <input className='ivField' type="number" min="0" max="31" value={defIV} onChange={e => setDefIV(+e.target.value)}/> =  </h3>
                                 </div>
                                 <div className='mb-2'>
-                                    <h3><i class="fa-solid fa-wand-sparkles"></i>: {pokemon.base_spa} + <input className='evField' type="number" placeholder='spa EV' min="0" max="252" step="4"/> + <input className='ivField' type="number" placeholder='spa IV' min="0" max="31"/> =  </h3>
+                                    <h3><i className="fa-solid fa-wand-sparkles"></i>: {pokemon.base_spa} + 
+                                    <input className='evField' type="number" min="0" max="252" step="4" value={spaEV} onChange={e => setSpaEV(+e.target.value)}/> + 
+                                    <input className='ivField' type="number" min="0" max="31" value={spaIV} onChange={e => setSpaIV(+e.target.value)}/> =  </h3>
                                 </div>
                                 <div className='mb-2'>
-                                    <h3><i class="fa-solid fa-circle-half-stroke"></i>: {pokemon.base_spd} + <input className='evField' type="number" placeholder='spd EV' min="0" max="252" step="4"/> + <input className='ivField' type="number" placeholder='spd IV' min="0" max="31"/> =  </h3>
+                                    <h3><i className="fa-solid fa-circle-half-stroke"></i>: {pokemon.base_spd} + 
+                                    <input className='evField' type="number" min="0" max="252" step="4" value={spdEV} onChange={e => setSpdEV(+e.target.value)}/> + 
+                                    <input className='ivField' type="number" min="0" max="31" value={spdIV} onChange={e => setSpdIV(+e.target.value)}/> =  </h3>
                                 </div>
                                 <div className='mb-2'>
-                                    <h3><i class="fa-solid fa-person-running"></i>: {pokemon.base_spe} + <input className='evField' type="number" placeholder='spe EV' min="0" max="252" step="4"/> + <input className='ivField' type="number" placeholder='spe IV' min="0" max="31"/> =  </h3>
+                                    <h3><i className="fa-solid fa-person-running"></i>: {pokemon.base_spe} + 
+                                    <input className='evField' type="number" min="0" max="252" step="4" value={speEV} onChange={e => setSpeEV(+e.target.value)}/> + 
+                                    <input className='ivField' type="number" min="0" max="31" value={speIV} onChange={e => setSpeIV(+e.target.value)}/> =  </h3>
                                 </div>
                                 <div className='mb-2'>
-                                    <h3><i class="fa-solid fa-face-grin-wide"></i>: &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <h3><i className="fa-solid fa-face-grin-wide"></i>: &nbsp;&nbsp;&nbsp;&nbsp;
                                         
                                             <select>
                                                 <option value="Hardy">Hardy</option>
