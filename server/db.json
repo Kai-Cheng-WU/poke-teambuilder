@@ -1,0 +1,23 @@
+{
+    "pokemons" : [
+        {
+            "id": "ABCD12315",
+            "name": "Zacian",
+            "hpEV": 0,
+            "hpIV": 0,
+            "atkEV": 0,
+            "atkIV": 0,
+            "defEV": 0,
+            "defIV": 0,
+            "spaEV": 0,
+            "spaIV": 0,
+            "spdEV": 0,
+            "spdIV": 0,
+            "speEV": 0,
+            "speIV": 0,
+            "nature": "jolly",
+            "ability": "intrepid sword",
+            "item": "rusted sword"
+        }
+    ]
+}

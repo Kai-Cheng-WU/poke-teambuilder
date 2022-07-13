@@ -40,8 +40,9 @@ let AddPokemon = ({open, onClose}) => {
     const [speIV, setSpeIV] = useState(0);
     const [speTotal, setSpeTotal] = useState(0);
 
+
     function calculateStatsTotal() {
-        setHpTotal(hpEV+hpIV+pokemon.base_hp);
+        setHpTotal((Math.floor(0.01*(2*pokemon.base_hp+hpIV+Math.floor(0.25*hpEV)))*50)+60);
     }
 
     const searchPokemon = (event) => {
@@ -68,7 +69,7 @@ let AddPokemon = ({open, onClose}) => {
     return (
         <React.Fragment>
             <div className='overlay'>
-                <div className='modalContainer'>
+                <div c lassName='modalContainer'>
                     <div className='top-menu row mb-2 justify-content-end '>
                         <div className='col-lg-8 mb-2'/>                    
                         <div className='col-sm-1 mb-2'>
@@ -167,6 +168,16 @@ let AddPokemon = ({open, onClose}) => {
                                                 <option value="Quirky">Quirky</option>
                                             </select>
                                     </h3>
+                                </div>
+                                <div className='mb-2'> 
+                                        <input type="text" className="form-control" placeholder='ability'/>
+                                </div>
+                                <div className='mb-2'> 
+                                        <input type="text" className="form-control" placeholder='held item'/>
+                                </div>
+                                <div className='mb-2'>
+                                    <input type='submit' className='btn btn-dark' value="Add Pokemon"/>
+
                                 </div>
                                 
  
