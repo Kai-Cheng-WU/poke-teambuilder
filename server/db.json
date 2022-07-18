@@ -36,7 +36,7 @@
             "spdIV": 0,
             "speEV": 0,
             "speIV": 0,
-            "nature": "modest",
+            "nature": "timid",
             "ability": "life orb",
             "item": "solar power"
         },
@@ -56,7 +56,7 @@
             "spdIV": 0,
             "speEV": 0,
             "speIV": 0,
-            "nature": "modest",
+            "nature": "bold",
             "ability": "leftover",
             "item": "storm drain"
         },
@@ -96,7 +96,7 @@
             "spdIV": 0,
             "speEV": 0,
             "speIV": 0,
-            "nature": "modest",
+            "nature": "impish",
             "ability": "shuca berry",
             "item": "intimidate"
         },
@@ -116,7 +116,7 @@
             "spdIV": 0,
             "speEV": 0,
             "speIV": 0,
-            "nature": "modest",
+            "nature": "impish",
             "ability": "prankster",
             "item": "light clay"
         }
