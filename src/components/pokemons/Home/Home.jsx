@@ -1,13 +1,46 @@
 import React, {useState} from 'react';
+import { useEffect } from 'react';
 import {Link} from "react-router-dom";
 import '../../../App.css';
 import pokeball from '../../../icons/pokeball.png'
 import AddPokemon from '../PokemonModals/AddPokemon'
+import {PokemonService} from "../../../services/PokemonService";
+import Spinner from '../../Spinner/Spinner';
 
 let Home = () => {
-    const [openAddModal, setOpenAddModal] = useState(false)
-    
+    let [state, setState] = useState({
+        loading : false,
+        pokemons : [],
+        errorMessage : ''
+    });
+ 
+    useEffect(() => {
+        async function fetchData() {
+            try{
+                setState({...state, loading:true});
+                let response = await PokemonService.getAllPokemons();
+                setState({
+                    ...state,
+                    loading: false,
+                    pokemons: response.data
+                })
+                console.log(response.data);
+            }
+            catch(error){
+                setState({
+                    ...state,
+                    loading: false,
+                    errorMessage: error.message
+                });
+            }
+        }
+        fetchData();
+    }, []);
 
+    let {loading, pokemons, errorMessage} = state;
+
+
+    const [openAddModal, setOpenAddModal] = useState(false)
 
     return (
         <React.Fragment>
@@ -26,7 +59,7 @@ let Home = () => {
                             
                         </div>
                         <div className='row'>
-                            <div className="col-md6">
+                            <div className="col-md-6">
                                 <form className="row">
                                     <div className="col mb-2">
                                         <input type="text" className="form-control border-dark card-container" placeholder="Browse my pokemons"/>
@@ -42,41 +75,53 @@ let Home = () => {
                 </div>
             </section>
 
-            <section className="pokemon-list">
-                <div className='container'>
-                    <div className="row">
-                        <div className="col-md-4">
-                            <div className="card">
-                                <div className="card-body">
-                                    <div className="row">
-                                        <div className="col-lg-9">
-                                            Charizard (placeholder)
-                                        </div>
-                                        <div className="col-sm-1 m-1">
-                                            <Link to={'/pokemons/edit/:pokeID'} className="btn btn-pokemonprofile">
-                                                <i className='fa-solid fa-pen'/>
-                                            </Link>
-                                        </div>
-                                        <div className="col-sm-1 m-1">
-                                            <button className="btn btn-pokemonprofile">
-                                                <i className='fa-solid fa-trash'/>
-                                            </button>
-                                        </div>   
-                                    </div>
-                                        
-                                    <div className="row">
-                                        <Link to={'/pokemons/view/:pokeID'} className="btn btn-pokemonprofile">
-                                            <div className="col d-flex">
-                                                <img src="https://archives.bulbagarden.net/media/upload/7/7e/006Charizard.png" alt="" className='pokemon-img d-flex'/>
+
+            {
+                loading ? <Spinner/> : <React.Fragment>
+                    <section className="pokemon-list">
+                        <div className='container'>
+                            <div className="row">
+                                {
+                                    pokemons.length > 0 && pokemons.map(pokemon => {
+                                        return (
+                                            <div className="col-md-4" key={pokemon.id}>
+                                                <div className="card my-2">
+                                                    <div className="card-body">
+                                                        <div className="row">
+                                                            <div className="col-lg-9">
+                                                                {pokemon.name}
+                                                            </div>
+                                                            <div className="col-sm-1 m-1">
+                                                                <Link to={'/pokemons/edit/:pokeID'} className="btn btn-pokemonprofile">
+                                                                    <i className='fa-solid fa-pen'/>
+                                                                </Link>
+                                                            </div>
+                                                            <div className="col-sm-1 m-1">
+                                                                <button className="btn btn-pokemonprofile">
+                                                                    <i className='fa-solid fa-trash'/>
+                                                                </button>
+                                                            </div>   
+                                                        </div>
+                                                            
+                                                        <div className="row">
+                                                            <Link to={'/pokemons/view/:pokeID'} className="btn btn-pokemonprofile">
+                                                                <div className="col d-flex">
+                                                                    <img src={pokemon.sprite} alt="" className='pokemon-img d-flex'/>
+                                                                </div>
+                                                            </Link>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </Link>
-                                    </div>
-                                </div>
+                                        )
+                                    })
+                                }
                             </div>
                         </div>
-                    </div>
-                </div>
-            </section>
+                    </section>
+                
+                </React.Fragment>
+            }
 
         </React.Fragment>
     )

@@ -69,7 +69,7 @@ let AddPokemon = ({open, onClose}) => {
     return (
         <React.Fragment>
             <div className='overlay'>
-                <div c lassName='modalContainer'>
+                <div className='modalContainer'>
                     <div className='top-menu row mb-2 justify-content-end '>
                         <div className='col-lg-8 mb-2'/>                    
                         <div className='col-sm-1 mb-2'>
