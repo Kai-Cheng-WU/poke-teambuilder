@@ -15,8 +15,8 @@ let App = () => {
         <Route path={'/'} element={<Navigate to={'/pokemons/home'}/>}/>
         <Route path={'/pokemons/home'} element={<Home/>} />
         <Route path={'/pokemons/add'} element={<AddPokemon/>} />
-        <Route path={'/pokemons/view/:pokeID'} element={<ViewPokemon/>} />
-        <Route path={'/pokemons/edit/:pokeID'} element={<EditPokemon/>} />
+        <Route path={'/pokemons/view/:pokemonId'} element={<ViewPokemon/>} />
+        <Route path={'/pokemons/edit/:pokemomId'} element={<EditPokemon/>} />
       </Routes>
 
     </React.Fragment>

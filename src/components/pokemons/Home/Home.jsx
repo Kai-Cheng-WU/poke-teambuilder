@@ -104,7 +104,7 @@ let Home = () => {
                                                         </div>
                                                             
                                                         <div className="row">
-                                                            <Link to={'/pokemons/view/:pokeID'} className="btn btn-pokemonprofile">
+                                                            <Link to={`/pokemons/view/${pokemon.id}`} className="btn btn-pokemonprofile">
                                                                 <div className="col d-flex">
                                                                     <img src={pokemon.sprite} alt="" className='pokemon-img d-flex'/>
                                                                 </div>
