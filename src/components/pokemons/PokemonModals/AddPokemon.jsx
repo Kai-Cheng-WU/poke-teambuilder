@@ -41,8 +41,9 @@ let AddPokemon = ({open, onClose}) => {
     const [speTotal, setSpeTotal] = useState(0);
 
 
-    function calculateStatsTotal() {
-        setHpTotal((Math.floor(0.01*(2*pokemon.base_hp+hpIV+Math.floor(0.25*hpEV)))*50)+60);
+    function calculateStatsTotal(e) {
+        e.preventDefault();
+        setHpTotal(Math.floor(0.01*(2*pokemon.base_hp+hpIV+Math.floor(0.25*hpEV))*50)+60);
     }
 
     const searchPokemon = (event) => {
@@ -168,6 +169,9 @@ let AddPokemon = ({open, onClose}) => {
                                                 <option value="Quirky">Quirky</option>
                                             </select>
                                     </h3>
+                                </div>
+                                <div className='mb-2'>
+                                    <button onClick={(e) => calculateStatsTotal(e)} className="btn btn-dark"> Compute Pokemon Stats</button>
                                 </div>
                                 <div className='mb-2'> 
                                         <input type="text" className="form-control" placeholder='ability'/>
