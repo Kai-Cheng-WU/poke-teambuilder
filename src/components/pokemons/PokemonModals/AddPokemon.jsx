@@ -4,7 +4,6 @@ import Axios from 'axios';
 
 let AddPokemon = ({open, onClose}) => {
     const [pokemonName, setPokemonName] = useState("");
-    const [pokemonChosen, setPokemonChosen] = useState(false);
     const [pokemon, setPokemon] = useState({
         name: "",
         species: "",
@@ -40,10 +39,215 @@ let AddPokemon = ({open, onClose}) => {
     const [speIV, setSpeIV] = useState(0);
     const [speTotal, setSpeTotal] = useState(0);
 
+    const [nature, setNature] = useState("Hardy");
 
     function calculateStatsTotal(e) {
         e.preventDefault();
+        switch(nature){
+            case 'Hardy':
+                setAtkTotal(Math.floor(0.01*(2*pokemon.base_atk+atkIV+Math.floor(0.25*atkEV))*50)+5);
+                setDefTotal(Math.floor(0.01*(2*pokemon.base_def+defIV+Math.floor(0.25*defEV))*50)+5);
+                setSpaTotal(Math.floor(0.01*(2*pokemon.base_spa+spaIV+Math.floor(0.25*spaEV))*50)+5);
+                setSpdTotal(Math.floor(0.01*(2*pokemon.base_spd+spdIV+Math.floor(0.25*spdEV))*50)+5);
+                setSpeTotal(Math.floor(0.01*(2*pokemon.base_spe+defIV+Math.floor(0.25*speEV))*50)+5);
+                break;
+
+            case 'Lonely':
+                setAtkTotal(Math.floor(1.1*(Math.floor(0.01*(2*pokemon.base_atk+atkIV+Math.floor(0.25*atkEV))*50)+5)));
+                setDefTotal(Math.floor(0.9*(Math.floor(0.01*(2*pokemon.base_def+defIV+Math.floor(0.25*defEV))*50)+5)));
+                setSpaTotal(Math.floor(0.01*(2*pokemon.base_spa+spaIV+Math.floor(0.25*spaEV))*50)+5);
+                setSpdTotal(Math.floor(0.01*(2*pokemon.base_spd+spdIV+Math.floor(0.25*spdEV))*50)+5);
+                setSpeTotal(Math.floor(0.01*(2*pokemon.base_spe+defIV+Math.floor(0.25*speEV))*50)+5);
+                break;
+
+            case 'Brave':
+                setAtkTotal(Math.floor(1.1*(Math.floor(0.01*(2*pokemon.base_atk+atkIV+Math.floor(0.25*atkEV))*50)+5)));
+                setDefTotal(Math.floor(0.01*(2*pokemon.base_def+defIV+Math.floor(0.25*defEV))*50)+5);
+                setSpaTotal(Math.floor(0.01*(2*pokemon.base_spa+spaIV+Math.floor(0.25*spaEV))*50)+5);
+                setSpdTotal(Math.floor(0.01*(2*pokemon.base_spd+spdIV+Math.floor(0.25*spdEV))*50)+5);
+                setSpeTotal(Math.floor(0,9*(Math.floor(0.01*(2*pokemon.base_spe+defIV+Math.floor(0.25*speEV))*50)+5)));
+                break;
+
+            case 'Adamant':
+                setAtkTotal(Math.floor(1.1*(Math.floor(0.01*(2*pokemon.base_atk+atkIV+Math.floor(0.25*atkEV))*50)+5)));
+                setDefTotal(Math.floor(0.01*(2*pokemon.base_def+defIV+Math.floor(0.25*defEV))*50)+5);
+                setSpaTotal(Math.floor(0.9*(Math.floor(0.01*(2*pokemon.base_spa+spaIV+Math.floor(0.25*spaEV))*50)+5)));
+                setSpdTotal(Math.floor(0.01*(2*pokemon.base_spd+spdIV+Math.floor(0.25*spdEV))*50)+5);
+                setSpeTotal(Math.floor(0.01*(2*pokemon.base_spe+defIV+Math.floor(0.25*speEV))*50)+5);
+                break;
+
+            case 'Naughty':
+                setAtkTotal(Math.floor(1.1*(Math.floor(0.01*(2*pokemon.base_atk+atkIV+Math.floor(0.25*atkEV))*50)+5)));
+                setDefTotal(Math.floor(0.01*(2*pokemon.base_def+defIV+Math.floor(0.25*defEV))*50)+5);
+                setSpaTotal(Math.floor(0.01*(2*pokemon.base_spa+spaIV+Math.floor(0.25*spaEV))*50)+5);
+                setSpdTotal(Math.floor(0.9*(Math.floor(0.01*(2*pokemon.base_spd+spdIV+Math.floor(0.25*spdEV))*50)+5)));
+                setSpeTotal(Math.floor(0.01*(2*pokemon.base_spe+defIV+Math.floor(0.25*speEV))*50)+5);
+                break; 
+
+            case 'Bold':
+                setAtkTotal(Math.floor(0.9*(Math.floor(0.01*(2*pokemon.base_atk+atkIV+Math.floor(0.25*atkEV))*50)+5)));
+                setDefTotal(Math.floor(1.1*(Math.floor(0.01*(2*pokemon.base_def+defIV+Math.floor(0.25*defEV))*50)+5)));
+                setSpaTotal(Math.floor(0.01*(2*pokemon.base_spa+spaIV+Math.floor(0.25*spaEV))*50)+5);
+                setSpdTotal(Math.floor(0.01*(2*pokemon.base_spd+spdIV+Math.floor(0.25*spdEV))*50)+5);
+                setSpeTotal(Math.floor(0.01*(2*pokemon.base_spe+defIV+Math.floor(0.25*speEV))*50)+5);
+                break;
+
+            case 'Docile':
+                setAtkTotal(Math.floor(0.01*(2*pokemon.base_atk+atkIV+Math.floor(0.25*atkEV))*50)+5);
+                setDefTotal(Math.floor(0.01*(2*pokemon.base_def+defIV+Math.floor(0.25*defEV))*50)+5);
+                setSpaTotal(Math.floor(0.01*(2*pokemon.base_spa+spaIV+Math.floor(0.25*spaEV))*50)+5);
+                setSpdTotal(Math.floor(0.01*(2*pokemon.base_spd+spdIV+Math.floor(0.25*spdEV))*50)+5);
+                setSpeTotal(Math.floor(0.01*(2*pokemon.base_spe+defIV+Math.floor(0.25*speEV))*50)+5);
+                break;
+
+            case 'Relaxed':
+                setAtkTotal(Math.floor(0.01*(2*pokemon.base_atk+atkIV+Math.floor(0.25*atkEV))*50)+5);
+                setDefTotal(Math.floor(1.1*(Math.floor(0.01*(2*pokemon.base_def+defIV+Math.floor(0.25*defEV))*50)+5)));
+                setSpaTotal(Math.floor(0.01*(2*pokemon.base_spa+spaIV+Math.floor(0.25*spaEV))*50)+5);
+                setSpdTotal(Math.floor(0.01*(2*pokemon.base_spd+spdIV+Math.floor(0.25*spdEV))*50)+5);
+                setSpeTotal(Math.floor(0,9*(Math.floor(0.01*(2*pokemon.base_spe+defIV+Math.floor(0.25*speEV))*50)+5)));
+                break;
+
+            case 'Impish':
+                setAtkTotal(Math.floor(0.01*(2*pokemon.base_atk+atkIV+Math.floor(0.25*atkEV))*50)+5);
+                setDefTotal(Math.floor(1.1*(Math.floor(0.01*(2*pokemon.base_def+defIV+Math.floor(0.25*defEV))*50)+5)));
+                setSpaTotal(Math.floor(0.9*(Math.floor(0.01*(2*pokemon.base_spa+spaIV+Math.floor(0.25*spaEV))*50)+5)));
+                setSpdTotal(Math.floor(0.01*(2*pokemon.base_spd+spdIV+Math.floor(0.25*spdEV))*50)+5);
+                setSpeTotal(Math.floor(0.01*(2*pokemon.base_spe+defIV+Math.floor(0.25*speEV))*50)+5);
+                break;
+
+            case 'Lax':
+                setAtkTotal(Math.floor(0.01*(2*pokemon.base_atk+atkIV+Math.floor(0.25*atkEV))*50)+5);
+                setDefTotal(Math.floor(1.1*(Math.floor(0.01*(2*pokemon.base_def+defIV+Math.floor(0.25*defEV))*50)+5)));
+                setSpaTotal(Math.floor(0.01*(2*pokemon.base_spa+spaIV+Math.floor(0.25*spaEV))*50)+5);
+                setSpdTotal(Math.floor(0.9*(Math.floor(0.01*(2*pokemon.base_spd+spdIV+Math.floor(0.25*spdEV))*50)+5)));
+                setSpeTotal(Math.floor(0.01*(2*pokemon.base_spe+defIV+Math.floor(0.25*speEV))*50)+5);
+                break;
+
+            case 'Timid':
+                setAtkTotal(Math.floor(0.9*(Math.floor(0.01*(2*pokemon.base_atk+atkIV+Math.floor(0.25*atkEV))*50)+5)));
+                setDefTotal(Math.floor(0.01*(2*pokemon.base_def+defIV+Math.floor(0.25*defEV))*50)+5);
+                setSpaTotal(Math.floor(0.01*(2*pokemon.base_spa+spaIV+Math.floor(0.25*spaEV))*50)+5);
+                setSpdTotal(Math.floor(0.01*(2*pokemon.base_spd+spdIV+Math.floor(0.25*spdEV))*50)+5);
+                setSpeTotal(Math.floor(1.1*(Math.floor(0.01*(2*pokemon.base_spe+defIV+Math.floor(0.25*speEV))*50)+5)));
+                break;
+
+            case 'Hasty':
+                setAtkTotal(Math.floor(0.01*(2*pokemon.base_atk+atkIV+Math.floor(0.25*atkEV))*50)+5);
+                setDefTotal(Math.floor(0.9*(Math.floor(0.01*(2*pokemon.base_def+defIV+Math.floor(0.25*defEV))*50)+5)));
+                setSpaTotal(Math.floor(0.01*(2*pokemon.base_spa+spaIV+Math.floor(0.25*spaEV))*50)+5);
+                setSpdTotal(Math.floor(0.01*(2*pokemon.base_spd+spdIV+Math.floor(0.25*spdEV))*50)+5);
+                setSpeTotal(Math.floor(1.1*(Math.floor(0.01*(2*pokemon.base_spe+defIV+Math.floor(0.25*speEV))*50)+5)));
+                break;
+
+            case 'Serious':
+                setAtkTotal(Math.floor(0.01*(2*pokemon.base_atk+atkIV+Math.floor(0.25*atkEV))*50)+5);
+                setDefTotal(Math.floor(0.01*(2*pokemon.base_def+defIV+Math.floor(0.25*defEV))*50)+5);
+                setSpaTotal(Math.floor(0.01*(2*pokemon.base_spa+spaIV+Math.floor(0.25*spaEV))*50)+5);
+                setSpdTotal(Math.floor(0.01*(2*pokemon.base_spd+spdIV+Math.floor(0.25*spdEV))*50)+5);
+                setSpeTotal(Math.floor(0.01*(2*pokemon.base_spe+defIV+Math.floor(0.25*speEV))*50)+5);
+                break;
+
+            case 'Jolly':
+                setAtkTotal(Math.floor(0.01*(2*pokemon.base_atk+atkIV+Math.floor(0.25*atkEV))*50)+5);
+                setDefTotal(Math.floor(0.01*(2*pokemon.base_def+defIV+Math.floor(0.25*defEV))*50)+5);
+                setSpaTotal(Math.floor(0.9*(Math.floor(0.01*(2*pokemon.base_spa+spaIV+Math.floor(0.25*spaEV))*50)+5)));
+                setSpdTotal(Math.floor(0.01*(2*pokemon.base_spd+spdIV+Math.floor(0.25*spdEV))*50)+5);
+                setSpeTotal(Math.floor(1.1*(Math.floor(0.01*(2*pokemon.base_spe+defIV+Math.floor(0.25*speEV))*50)+5)));
+                break;
+
+            case 'Naive':
+                setAtkTotal(Math.floor(0.01*(2*pokemon.base_atk+atkIV+Math.floor(0.25*atkEV))*50)+5);
+                setDefTotal(Math.floor(0.01*(2*pokemon.base_def+defIV+Math.floor(0.25*defEV))*50)+5);
+                setSpaTotal(Math.floor(0.01*(2*pokemon.base_spa+spaIV+Math.floor(0.25*spaEV))*50)+5);
+                setSpdTotal(Math.floor(0.9*(Math.floor(0.01*(2*pokemon.base_spd+spdIV+Math.floor(0.25*spdEV))*50)+5)));
+                setSpeTotal(Math.floor(1.1*(Math.floor(0.01*(2*pokemon.base_spe+defIV+Math.floor(0.25*speEV))*50)+5)));
+                break;
+
+            case 'Modest':
+                setAtkTotal(Math.floor(0.9*(Math.floor(0.01*(2*pokemon.base_atk+atkIV+Math.floor(0.25*atkEV))*50)+5)));
+                setDefTotal(Math.floor(0.01*(2*pokemon.base_def+defIV+Math.floor(0.25*defEV))*50)+5);
+                setSpaTotal(Math.floor(1.1*(Math.floor(0.01*(2*pokemon.base_spa+spaIV+Math.floor(0.25*spaEV))*50)+5)));
+                setSpdTotal(Math.floor(0.01*(2*pokemon.base_spd+spdIV+Math.floor(0.25*spdEV))*50)+5);
+                setSpeTotal(Math.floor(0.01*(2*pokemon.base_spe+defIV+Math.floor(0.25*speEV))*50)+5);
+                break;
+
+            case 'Mild':
+                setAtkTotal(Math.floor(0.01*(2*pokemon.base_atk+atkIV+Math.floor(0.25*atkEV))*50)+5);
+                setDefTotal(Math.floor(0.9*(Math.floor(0.01*(2*pokemon.base_def+defIV+Math.floor(0.25*defEV))*50)+5)));
+                setSpaTotal(Math.floor(1.1*(Math.floor(0.01*(2*pokemon.base_spa+spaIV+Math.floor(0.25*spaEV))*50)+5)));
+                setSpdTotal(Math.floor(0.01*(2*pokemon.base_spd+spdIV+Math.floor(0.25*spdEV))*50)+5);
+                setSpeTotal(Math.floor(0.01*(2*pokemon.base_spe+defIV+Math.floor(0.25*speEV))*50)+5);
+                break;
+
+            case 'Quiet':
+                setAtkTotal(Math.floor(0.01*(2*pokemon.base_atk+atkIV+Math.floor(0.25*atkEV))*50)+5);
+                setDefTotal(Math.floor(0.01*(2*pokemon.base_def+defIV+Math.floor(0.25*defEV))*50)+5);
+                setSpaTotal(Math.floor(1.1*(Math.floor(0.01*(2*pokemon.base_spa+spaIV+Math.floor(0.25*spaEV))*50)+5)));
+                setSpdTotal(Math.floor(0.01*(2*pokemon.base_spd+spdIV+Math.floor(0.25*spdEV))*50)+5);
+                setSpeTotal(Math.floor(0,9*(Math.floor(0.01*(2*pokemon.base_spe+defIV+Math.floor(0.25*speEV))*50)+5)));
+                break;
+
+            case 'Bashful':
+                setAtkTotal(Math.floor(0.01*(2*pokemon.base_atk+atkIV+Math.floor(0.25*atkEV))*50)+5);
+                setDefTotal(Math.floor(0.01*(2*pokemon.base_def+defIV+Math.floor(0.25*defEV))*50)+5);
+                setSpaTotal(Math.floor(0.01*(2*pokemon.base_spa+spaIV+Math.floor(0.25*spaEV))*50)+5);
+                setSpdTotal(Math.floor(0.01*(2*pokemon.base_spd+spdIV+Math.floor(0.25*spdEV))*50)+5);
+                setSpeTotal(Math.floor(0.01*(2*pokemon.base_spe+defIV+Math.floor(0.25*speEV))*50)+5);
+                break;
+
+            case 'Rash':
+                setAtkTotal(Math.floor(0.01*(2*pokemon.base_atk+atkIV+Math.floor(0.25*atkEV))*50)+5);
+                setDefTotal(Math.floor(0.01*(2*pokemon.base_def+defIV+Math.floor(0.25*defEV))*50)+5);
+                setSpaTotal(Math.floor(1.1*(Math.floor(0.01*(2*pokemon.base_spa+spaIV+Math.floor(0.25*spaEV))*50)+5)));
+                setSpdTotal(Math.floor(0.9*(Math.floor(0.01*(2*pokemon.base_spd+spdIV+Math.floor(0.25*spdEV))*50)+5)));
+                setSpeTotal(Math.floor(0.01*(2*pokemon.base_spe+defIV+Math.floor(0.25*speEV))*50)+5);
+                break;
+
+            case 'Calm':
+                setAtkTotal(Math.floor(0.9*(Math.floor(0.01*(2*pokemon.base_atk+atkIV+Math.floor(0.25*atkEV))*50)+5)));
+                setDefTotal(Math.floor(0.01*(2*pokemon.base_def+defIV+Math.floor(0.25*defEV))*50)+5);
+                setSpaTotal(Math.floor(0.01*(2*pokemon.base_spa+spaIV+Math.floor(0.25*spaEV))*50)+5);
+                setSpdTotal(Math.floor(1.1*(Math.floor(0.01*(2*pokemon.base_spd+spdIV+Math.floor(0.25*spdEV))*50)+5)));
+                setSpeTotal(Math.floor(0.01*(2*pokemon.base_spe+defIV+Math.floor(0.25*speEV))*50)+5);
+                break;
+
+            case 'Gentle':
+                setAtkTotal(Math.floor(0.01*(2*pokemon.base_atk+atkIV+Math.floor(0.25*atkEV))*50)+5);
+                setDefTotal(Math.floor(0.9*(Math.floor(0.01*(2*pokemon.base_def+defIV+Math.floor(0.25*defEV))*50)+5)));
+                setSpaTotal(Math.floor(0.01*(2*pokemon.base_spa+spaIV+Math.floor(0.25*spaEV))*50)+5);
+                setSpdTotal(Math.floor(1.1*(Math.floor(0.01*(2*pokemon.base_spd+spdIV+Math.floor(0.25*spdEV))*50)+5)));
+                setSpeTotal(Math.floor(0.01*(2*pokemon.base_spe+defIV+Math.floor(0.25*speEV))*50)+5);
+                break;
+
+            case 'Sassy':
+                setAtkTotal(Math.floor(0.01*(2*pokemon.base_atk+atkIV+Math.floor(0.25*atkEV))*50)+5);
+                setDefTotal(Math.floor(0.01*(2*pokemon.base_def+defIV+Math.floor(0.25*defEV))*50)+5);
+                setSpaTotal(Math.floor(0.01*(2*pokemon.base_spa+spaIV+Math.floor(0.25*spaEV))*50)+5);
+                setSpdTotal(Math.floor(1.1*(Math.floor(0.01*(2*pokemon.base_spd+spdIV+Math.floor(0.25*spdEV))*50)+5)));
+                setSpeTotal(Math.floor(0,9*(Math.floor(0.01*(2*pokemon.base_spe+defIV+Math.floor(0.25*speEV))*50)+5)));
+                break;
+
+            case 'Careful':
+                setAtkTotal(Math.floor(0.01*(2*pokemon.base_atk+atkIV+Math.floor(0.25*atkEV))*50)+5);
+                setDefTotal(Math.floor(0.01*(2*pokemon.base_def+defIV+Math.floor(0.25*defEV))*50)+5);
+                setSpaTotal(Math.floor(0.9*(Math.floor(0.01*(2*pokemon.base_spa+spaIV+Math.floor(0.25*spaEV))*50)+5)));
+                setSpdTotal(Math.floor(1.1*(Math.floor(0.01*(2*pokemon.base_spd+spdIV+Math.floor(0.25*spdEV))*50)+5)));
+                setSpeTotal(Math.floor(0.01*(2*pokemon.base_spe+defIV+Math.floor(0.25*speEV))*50)+5);
+                break;
+
+            case 'Quirky':
+                setAtkTotal(Math.floor(0.01*(2*pokemon.base_atk+atkIV+Math.floor(0.25*atkEV))*50)+5);
+                setDefTotal(Math.floor(0.01*(2*pokemon.base_def+defIV+Math.floor(0.25*defEV))*50)+5);
+                setSpaTotal(Math.floor(0.01*(2*pokemon.base_spa+spaIV+Math.floor(0.25*spaEV))*50)+5);
+                setSpdTotal(Math.floor(0.01*(2*pokemon.base_spd+spdIV+Math.floor(0.25*spdEV))*50)+5);
+                setSpeTotal(Math.floor(0.01*(2*pokemon.base_spe+defIV+Math.floor(0.25*speEV))*50)+5);
+                break;
+        }
+
         setHpTotal(Math.floor(0.01*(2*pokemon.base_hp+hpIV+Math.floor(0.25*hpEV))*50)+60);
+        console.log(nature);
+        
     }
 
     const searchPokemon = (event) => {
@@ -62,7 +266,6 @@ let AddPokemon = ({open, onClose}) => {
                 base_spe: response.data.stats[5].base_stat,
             });
         });
-        setPokemonChosen(true)
     };
 
     if(!open) return null
@@ -110,39 +313,44 @@ let AddPokemon = ({open, onClose}) => {
                                 <h1>{pokemon.name}</h1>
                                 <div className='mb-2'>
                                     <h3><i className="fa-solid fa-heart"></i>: {pokemon.base_hp} + 
-                                        <input className='evField' type="number" min="0" max="252" step="4" value={hpEV} onChange={e => setHpEV(+e.target.value)}/> + 
-                                        <input className='ivField' type="number" min="0" max="31" value={hpIV} onChange={e => setHpIV(+e.target.value)}/> =  
-                                        {hpTotal}</h3>
+                                    <input className='evField' type="number" min="0" max="252" step="4" value={hpEV} onChange={e => setHpEV(+e.target.value)}/> + 
+                                    <input className='ivField' type="number" min="0" max="31" value={hpIV} onChange={e => setHpIV(+e.target.value)}/> =  
+                                    {hpTotal}</h3>
                                 </div>
                                 <div className='mb-2'>
                                     <h3><i className="fa-solid fa-hand-fist"></i>: {pokemon.base_atk} + 
                                     <input className='evField' type="number"  min="0" max="252" step="4" value={atkEV} onChange={e => setAtkEV(+e.target.value)}/> + 
-                                    <input className='ivField' type="number"  min="0" max="31" value={atkIV} onChange={e => setAtkIV(+e.target.value)}/> =  </h3>
+                                    <input className='ivField' type="number"  min="0" max="31" value={atkIV} onChange={e => setAtkIV(+e.target.value)}/> =  
+                                    {atkTotal}</h3>
                                 </div>
                                 <div className='mb-2'>
                                     <h3><i className="fa-solid fa-shield-halved"></i>: {pokemon.base_def} + 
                                     <input className='evField' type="number" min="0" max="252" step="4" value={defEV} onChange={e => setDefEV(+e.target.value)}/> + 
-                                    <input className='ivField' type="number" min="0" max="31" value={defIV} onChange={e => setDefIV(+e.target.value)}/> =  </h3>
+                                    <input className='ivField' type="number" min="0" max="31" value={defIV} onChange={e => setDefIV(+e.target.value)}/> =  
+                                    {defTotal}</h3>
                                 </div>
                                 <div className='mb-2'>
                                     <h3><i className="fa-solid fa-wand-sparkles"></i>: {pokemon.base_spa} + 
                                     <input className='evField' type="number" min="0" max="252" step="4" value={spaEV} onChange={e => setSpaEV(+e.target.value)}/> + 
-                                    <input className='ivField' type="number" min="0" max="31" value={spaIV} onChange={e => setSpaIV(+e.target.value)}/> =  </h3>
+                                    <input className='ivField' type="number" min="0" max="31" value={spaIV} onChange={e => setSpaIV(+e.target.value)}/> =  
+                                    {spaTotal}</h3>
                                 </div>
                                 <div className='mb-2'>
                                     <h3><i className="fa-solid fa-circle-half-stroke"></i>: {pokemon.base_spd} + 
                                     <input className='evField' type="number" min="0" max="252" step="4" value={spdEV} onChange={e => setSpdEV(+e.target.value)}/> + 
-                                    <input className='ivField' type="number" min="0" max="31" value={spdIV} onChange={e => setSpdIV(+e.target.value)}/> =  </h3>
+                                    <input className='ivField' type="number" min="0" max="31" value={spdIV} onChange={e => setSpdIV(+e.target.value)}/> =  
+                                    {spdTotal}</h3>
                                 </div>
                                 <div className='mb-2'>
                                     <h3><i className="fa-solid fa-person-running"></i>: {pokemon.base_spe} + 
                                     <input className='evField' type="number" min="0" max="252" step="4" value={speEV} onChange={e => setSpeEV(+e.target.value)}/> + 
-                                    <input className='ivField' type="number" min="0" max="31" value={speIV} onChange={e => setSpeIV(+e.target.value)}/> =  </h3>
+                                    <input className='ivField' type="number" min="0" max="31" value={speIV} onChange={e => setSpeIV(+e.target.value)}/> =  
+                                    {speTotal}</h3>
                                 </div>
                                 <div className='mb-2'>
                                     <h3><i className="fa-solid fa-face-grin-wide"></i>: &nbsp;&nbsp;&nbsp;&nbsp;
                                         
-                                            <select>
+                                            <select onChange={(e) => setNature(e.target.value)} defaultValue={"Hardy"}>
                                                 <option value="Hardy">Hardy</option>
                                                 <option value="Lonely">Lonely</option>
                                                 <option value="Brave">Brave</option>
@@ -174,10 +382,10 @@ let AddPokemon = ({open, onClose}) => {
                                     <button onClick={(e) => calculateStatsTotal(e)} className="btn btn-dark"> Compute Pokemon Stats</button>
                                 </div>
                                 <div className='mb-2'> 
-                                        <input type="text" className="form-control" placeholder='ability'/>
+                                    <input type="text" className="form-control" placeholder='ability'/>
                                 </div>
                                 <div className='mb-2'> 
-                                        <input type="text" className="form-control" placeholder='held item'/>
+                                    <input type="text" className="form-control" placeholder='held item'/>
                                 </div>
                                 <div className='mb-2'>
                                     <input type='submit' className='btn btn-dark' value="Add Pokemon"/>
