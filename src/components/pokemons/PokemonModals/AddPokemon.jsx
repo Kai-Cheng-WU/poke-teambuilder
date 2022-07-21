@@ -65,7 +65,7 @@ let AddPokemon = ({open, onClose}) => {
                 setDefTotal(Math.floor(0.01*(2*pokemon.base_def+defIV+Math.floor(0.25*defEV))*50)+5);
                 setSpaTotal(Math.floor(0.01*(2*pokemon.base_spa+spaIV+Math.floor(0.25*spaEV))*50)+5);
                 setSpdTotal(Math.floor(0.01*(2*pokemon.base_spd+spdIV+Math.floor(0.25*spdEV))*50)+5);
-                setSpeTotal(Math.floor(0,9*(Math.floor(0.01*(2*pokemon.base_spe+defIV+Math.floor(0.25*speEV))*50)+5)));
+                setSpeTotal(Math.floor(0.9*(Math.floor(0.01*(2*pokemon.base_spe+defIV+Math.floor(0.25*speEV))*50)+5)));
                 break;
 
             case 'Adamant':
@@ -105,7 +105,7 @@ let AddPokemon = ({open, onClose}) => {
                 setDefTotal(Math.floor(1.1*(Math.floor(0.01*(2*pokemon.base_def+defIV+Math.floor(0.25*defEV))*50)+5)));
                 setSpaTotal(Math.floor(0.01*(2*pokemon.base_spa+spaIV+Math.floor(0.25*spaEV))*50)+5);
                 setSpdTotal(Math.floor(0.01*(2*pokemon.base_spd+spdIV+Math.floor(0.25*spdEV))*50)+5);
-                setSpeTotal(Math.floor(0,9*(Math.floor(0.01*(2*pokemon.base_spe+defIV+Math.floor(0.25*speEV))*50)+5)));
+                setSpeTotal(Math.floor(0.9*(Math.floor(0.01*(2*pokemon.base_spe+defIV+Math.floor(0.25*speEV))*50)+5)));
                 break;
 
             case 'Impish':
@@ -185,7 +185,7 @@ let AddPokemon = ({open, onClose}) => {
                 setDefTotal(Math.floor(0.01*(2*pokemon.base_def+defIV+Math.floor(0.25*defEV))*50)+5);
                 setSpaTotal(Math.floor(1.1*(Math.floor(0.01*(2*pokemon.base_spa+spaIV+Math.floor(0.25*spaEV))*50)+5)));
                 setSpdTotal(Math.floor(0.01*(2*pokemon.base_spd+spdIV+Math.floor(0.25*spdEV))*50)+5);
-                setSpeTotal(Math.floor(0,9*(Math.floor(0.01*(2*pokemon.base_spe+defIV+Math.floor(0.25*speEV))*50)+5)));
+                setSpeTotal(Math.floor(0.9*(Math.floor(0.01*(2*pokemon.base_spe+defIV+Math.floor(0.25*speEV))*50)+5)));
                 break;
 
             case 'Bashful':
@@ -225,7 +225,7 @@ let AddPokemon = ({open, onClose}) => {
                 setDefTotal(Math.floor(0.01*(2*pokemon.base_def+defIV+Math.floor(0.25*defEV))*50)+5);
                 setSpaTotal(Math.floor(0.01*(2*pokemon.base_spa+spaIV+Math.floor(0.25*spaEV))*50)+5);
                 setSpdTotal(Math.floor(1.1*(Math.floor(0.01*(2*pokemon.base_spd+spdIV+Math.floor(0.25*spdEV))*50)+5)));
-                setSpeTotal(Math.floor(0,9*(Math.floor(0.01*(2*pokemon.base_spe+defIV+Math.floor(0.25*speEV))*50)+5)));
+                setSpeTotal(Math.floor(0.9*(Math.floor(0.01*(2*pokemon.base_spe+defIV+Math.floor(0.25*speEV))*50)+5)));
                 break;
 
             case 'Careful':
