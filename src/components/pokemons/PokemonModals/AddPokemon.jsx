@@ -378,21 +378,17 @@ let AddPokemon = ({open, onClose}) => {
                                             </select>
                                     </h3>
                                 </div>
-                                <div className='mb-2'>
-                                    <button onClick={(e) => calculateStatsTotal(e)} className="btn btn-dark"> Compute Pokemon Stats</button>
+                                <div className='mb-2'> 
+                                    
                                 </div>
                                 <div className='mb-2'> 
-                                    <input type="text" className="form-control" placeholder='ability'/>
-                                </div>
-                                <div className='mb-2'> 
-                                    <input type="text" className="form-control" placeholder='held item'/>
+                                    <input type="text" className="form-control w-25 mb-2" placeholder='ability'/>
+                                    <input type="text" className="form-control w-25 mb-2" placeholder='held item'/>
                                 </div>
                                 <div className='mb-2'>
-                                    <input type='submit' className='btn btn-dark' value="Add Pokemon"/>
-
+                                    <button onClick={(e) => calculateStatsTotal(e)} className="btn btn-danger m-2"> Visualize Pokemon Stats</button>
+                                    <input type='submit' className='btn btn-dark m-2' value="Add Pokemon"/>
                                 </div>
-                                
- 
                             </form>
                         </div>
                     </div>
