@@ -89,12 +89,15 @@ let ViewPokemon = () => {
                                             <li className='list-group-item list-group-item-action'>
                                                 <i className="fa-solid fa-masks-theater"/>: <span className='fw-bold'>{pokemon.nature}</span>
                                             </li>
-                                            <li className='list-group-item list-group-item-action'>
-                                                <i className="fa-solid fa-bag-shopping"/>: <span className='fw-bold'>{pokemon.item}</span>
-                                            </li>
+                                            
                                             <li className='list-group-item list-group-item-action'>
                                                 <i className="fa-solid fa-lightbulb"/>: <span className='fw-bold'>{pokemon.ability}</span>
                                             </li>
+                                            
+                                            <li className='list-group-item list-group-item-action'>
+                                                <i className="fa-solid fa-bag-shopping"/>: <span className='fw-bold'>{pokemon.item}</span>
+                                            </li>
+                                            
                                         </ul>
 
                                     </div>

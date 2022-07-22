@@ -348,7 +348,7 @@ let AddPokemon = ({open, onClose}) => {
                                     {speTotal}</h3>
                                 </div>
                                 <div className='mb-2'>
-                                    <h3><i className="fa-solid fa-face-grin-wide"></i>: &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <h3><i className="fa-solid fa-masks-theater"></i>: &nbsp;&nbsp;&nbsp;&nbsp;
                                         
                                             <select onChange={(e) => setNature(e.target.value)} defaultValue={"Hardy"}>
                                                 <option value="Hardy">Hardy</option>
@@ -379,11 +379,12 @@ let AddPokemon = ({open, onClose}) => {
                                     </h3>
                                 </div>
                                 <div className='mb-2'> 
-                                    
+                                    <h3><i className="fa-solid fa-lightbulb"/> : &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="text" className="w-25 mb-2" placeholder='ability'/></h3>
                                 </div>
                                 <div className='mb-2'> 
-                                    <input type="text" className="form-control w-25 mb-2" placeholder='ability'/>
-                                    <input type="text" className="form-control w-25 mb-2" placeholder='held item'/>
+                                    <h3><i className="fa-solid fa-bag-shopping"/> : &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="text" className="w-25 mb-2" placeholder='held item'/></h3>
                                 </div>
                                 <div className='mb-2'>
                                     <button onClick={(e) => calculateStatsTotal(e)} className="btn btn-danger m-2"> Visualize Pokemon Stats</button>
