@@ -12,4 +12,9 @@ export class PokemonService {
         let dataURL =`${this.serverURL}/pokemons/${pokemonId}`;
         return axios.get(dataURL);
     }
+
+    static createPokemon(pokemon){
+        let dataURL = `${this.serverURL}/pokemons`;
+        return axios.post(dataURL, pokemon);
+    }
 }

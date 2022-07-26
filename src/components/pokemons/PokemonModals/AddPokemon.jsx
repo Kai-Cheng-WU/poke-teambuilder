@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import '../../../App.css';
 import Axios from 'axios';
+import { PokemonService } from '../../../services/PokemonService';
 
 let AddPokemon = ({open, onClose}) => {
     const [pokemonName, setPokemonName] = useState("");
@@ -14,6 +15,7 @@ let AddPokemon = ({open, onClose}) => {
         base_spa: 0,
         base_spd: 0,
         base_spe: 0,
+        abilities: {}
     });
     const [hpEV, setHpEV] = useState(0);
     const [hpIV, setHpIV] = useState(0);
@@ -40,6 +42,34 @@ let AddPokemon = ({open, onClose}) => {
     const [speTotal, setSpeTotal] = useState(0);
 
     const [nature, setNature] = useState("Hardy");
+    const [ability, setAbility] = useState("");
+    const [item, setItem] = useState("");
+
+    const [myPokemon, setMyPokemon] = useState({
+        name: "",
+        sprite:"",
+        hpEV: 0,
+        hpIV: 0,
+        hpTotal: 0,
+        atkEV: 0,
+        atkIV: 0,
+        atkTotal: 0,
+        defEV: 0,
+        defIV: 0,
+        defTotal: 0,
+        spaEV: 0,
+        spaIV: 0,
+        spaTotal: 0,
+        spdEV: 0,
+        spdIV: 0,
+        spdTotal: 0,
+        speEV: 0,
+        speIV: 0,
+        speTotal: 0,
+        nature: "",
+        ability: "",
+        item: ""
+    })
 
     function calculateStatsTotal(e) {
         e.preventDefault();
@@ -264,8 +294,40 @@ let AddPokemon = ({open, onClose}) => {
                 base_spa: response.data.stats[3].base_stat,
                 base_spd: response.data.stats[4].base_stat,
                 base_spe: response.data.stats[5].base_stat,
+                abilities: response.data.abilities
             });
         });
+    };
+
+    let submitPokeForm = async (e) => {
+        e.preventDefault();
+        
+        setMyPokemon({
+            name: pokemon.name,
+            sprite: pokemon.img,
+            hpEV: hpEV,
+            hpIV: hpIV,
+            hpTotal: hpTotal,
+            atkEV: atkEV,
+            atkIV: atkIV,
+            atkTotal: atkTotal,
+            defEV: defEV,
+            defIV: defIV,
+            defTotal: defTotal,
+            spaEV: spaEV,
+            spaIV: spaIV,
+            spaTotal: spaTotal,
+            spdEV: spdEV,
+            spdIV: spdIV,
+            spdTotal: spdTotal,
+            speEV: speEV,
+            speIV: speIV,
+            speTotal: speTotal,
+            nature: nature,
+            ability: ability,
+            item: item
+        })
+        await PokemonService.createPokemon(myPokemon);
     };
 
     if(!open) return null
@@ -309,7 +371,7 @@ let AddPokemon = ({open, onClose}) => {
                         </div>
                         
                         <div className='col-md-12'>
-                            <form style={{maxWidth: "100%"}}>
+                            <form style={{maxWidth: "100%"}} onSubmit={submitPokeForm}>
                                 <h1>{pokemon.name}</h1>
                                 <div className='mb-2'>
                                     <h3><i className="fa-solid fa-heart"></i>: {pokemon.base_hp} + 
@@ -380,12 +442,28 @@ let AddPokemon = ({open, onClose}) => {
                                 </div>
                                 <div className='mb-2'> 
                                     <h3><i className="fa-solid fa-lightbulb"/> : &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <input type="text" className="w-25 mb-2" placeholder='ability'/></h3>
+                                    <select 
+                                        required = {true}
+                                        name = "ability"
+                                        value = {pokemon.ability}
+                                        onChange={e => setAbility(+e.target.value)}
+                                        className="w-50 mb-2">
+                                        {
+                                            pokemon.abilities.length > 0 && pokemon.abilities.map(ability => {
+                                                return(
+                                                    <option key={ability.ability.name}>{ability.ability.name}</option>
+                                                )
+                                            })
+                                        }                                       
+                                    </select>
+                                    </h3>
                                 </div>
+
                                 <div className='mb-2'> 
                                     <h3><i className="fa-solid fa-bag-shopping"/> : &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <input type="text" className="w-25 mb-2" placeholder='held item'/></h3>
+                                    <input type="text" className="w-50 mb-2" placeholder='held item' onChange={e => setItem(+e.target.value)}/></h3>
                                 </div>
+                                
                                 <div className='mb-2'>
                                     <button onClick={(e) => calculateStatsTotal(e)} className="btn btn-danger m-2"> Visualize Pokemon Stats</button>
                                     <input type='submit' className='btn btn-dark m-2' value="Add Pokemon"/>

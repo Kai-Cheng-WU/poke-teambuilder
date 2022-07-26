@@ -40,7 +40,9 @@ let Home = () => {
     let {loading, pokemons, errorMessage} = state;
 
 
-    const [openAddModal, setOpenAddModal] = useState(false)
+    const [openAddModal, setOpenAddModal] = useState(false);
+    const [openEditModal, setOpenEditModal] = useState(false);
+
 
     return (
         <React.Fragment>
