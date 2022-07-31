@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import '../../../App.css';
 import pokeball from '../../../icons/pokeball.png'
 import AddPokemon from '../PokemonModals/AddPokemon'
+import DeletePokemon from '../PokemonModals/DeletePokemon'
 import {PokemonService} from "../../../services/PokemonService";
 import Spinner from '../../Spinner/Spinner';
 
@@ -41,6 +42,7 @@ let Home = () => {
 
 
     const [openAddModal, setOpenAddModal] = useState(false);
+    const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [openEditModal, setOpenEditModal] = useState(false);
 
 
@@ -99,10 +101,11 @@ let Home = () => {
                                                                 </Link>
                                                             </div>
                                                             <div className="col-sm-1 m-1">
-                                                                <button className="btn btn-pokemonprofile">
+                                                                <button onClick={()=>setOpenDeleteModal(true)} className="btn btn-pokemonprofile">
                                                                     <i className='fa-solid fa-trash'/>
                                                                 </button>
                                                             </div>   
+                                                            <DeletePokemon open={openDeleteModal} onClose={()=>{setOpenDeleteModal(false);window.location.reload()}} id={pokemon.id} pokemonName={pokemon.name}/>
                                                         </div>
                                                             
                                                         <div className="row">

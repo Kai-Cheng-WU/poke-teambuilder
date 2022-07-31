@@ -69,8 +69,9 @@ let AddPokemon = ({open, onClose}) => {
         nature: "",
         ability: "",
         item: ""
-    })
+    });
 
+    //for some reason, the "confirm change button needs to be clicked twice..."
     function calculateStatsTotal(e) {
         e.preventDefault();
         switch(nature){
@@ -276,32 +277,8 @@ let AddPokemon = ({open, onClose}) => {
         }
 
         setHpTotal(Math.floor(0.01*(2*pokemon.base_hp+hpIV+Math.floor(0.25*hpEV))*50)+60);
-        console.log(nature);
-        
-    }
 
-    const searchPokemon = (event) => {
-        event.preventDefault();
-        Axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`).then((response)=> {
-            console.log(response); 
-            setPokemon({
-                name: pokemonName, 
-                species: response.data.species.namem, 
-                img: response.data.sprites.front_default,
-                base_hp: response.data.stats[0].base_stat,
-                base_atk: response.data.stats[1].base_stat,
-                base_def: response.data.stats[2].base_stat,
-                base_spa: response.data.stats[3].base_stat,
-                base_spd: response.data.stats[4].base_stat,
-                base_spe: response.data.stats[5].base_stat,
-                abilities: response.data.abilities
-            });
-        });
-    };
 
-    let submitPokeForm = async (e) => {
-        e.preventDefault();
-        
         setMyPokemon({
             name: pokemon.name,
             sprite: pokemon.img,
@@ -327,7 +304,31 @@ let AddPokemon = ({open, onClose}) => {
             ability: ability,
             item: item
         })
-        await PokemonService.createPokemon(myPokemon);
+        console.log(nature);
+        
+    }
+
+    const searchPokemon = (event) => {
+        event.preventDefault();
+        Axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`).then((response)=> {
+            console.log(response); 
+            setPokemon({
+                name: pokemonName, 
+                species: response.data.species.namem, 
+                img: response.data.sprites.front_default,
+                base_hp: response.data.stats[0].base_stat,
+                base_atk: response.data.stats[1].base_stat,
+                base_def: response.data.stats[2].base_stat,
+                base_spa: response.data.stats[3].base_stat,
+                base_spd: response.data.stats[4].base_stat,
+                base_spe: response.data.stats[5].base_stat,
+                abilities: response.data.abilities
+            });
+        });
+    };
+
+    let submitPokeForm = async (e) => {
+        await PokemonService.createPokemon(myPokemon);    
     };
 
     if(!open) return null
@@ -412,7 +413,8 @@ let AddPokemon = ({open, onClose}) => {
                                 <div className='mb-2'>
                                     <h3><i className="fa-solid fa-masks-theater"></i>: &nbsp;&nbsp;&nbsp;&nbsp;
                                         
-                                            <select onChange={(e) => setNature(e.target.value)} defaultValue={"Hardy"}>
+                                            <select onChange={(e) => setNature(e.target.value)}>
+                                                <option value="">Choose a nature</option>
                                                 <option value="Hardy">Hardy</option>
                                                 <option value="Lonely">Lonely</option>
                                                 <option value="Brave">Brave</option>
@@ -446,8 +448,9 @@ let AddPokemon = ({open, onClose}) => {
                                         required = {true}
                                         name = "ability"
                                         value = {pokemon.ability}
-                                        onChange={e => setAbility(+e.target.value)}
+                                        onChange={e => setAbility(e.target.value)}
                                         className="w-50 mb-2">
+                                        <option value="">Choose an ability</option>
                                         {
                                             pokemon.abilities.length > 0 && pokemon.abilities.map(ability => {
                                                 return(
@@ -461,11 +464,11 @@ let AddPokemon = ({open, onClose}) => {
 
                                 <div className='mb-2'> 
                                     <h3><i className="fa-solid fa-bag-shopping"/> : &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <input type="text" className="w-50 mb-2" placeholder='held item' onChange={e => setItem(+e.target.value)}/></h3>
+                                    <input type="text" className="w-50 mb-2" placeholder='held item' onChange={e => setItem(e.target.value)}/></h3>
                                 </div>
                                 
                                 <div className='mb-2'>
-                                    <button onClick={(e) => calculateStatsTotal(e)} className="btn btn-danger m-2"> Visualize Pokemon Stats</button>
+                                    <button onClick={(e) => calculateStatsTotal(e)} className="btn btn-danger m-2"> Confirm Changes</button>
                                     <input type='submit' className='btn btn-dark m-2' value="Add Pokemon"/>
                                 </div>
                             </form>

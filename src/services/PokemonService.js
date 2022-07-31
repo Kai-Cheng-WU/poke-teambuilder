@@ -17,4 +17,9 @@ export class PokemonService {
         let dataURL = `${this.serverURL}/pokemons`;
         return axios.post(dataURL, pokemon);
     }
+
+    static deletePokemon(pokemonId){
+        let dataURL = `${this.serverURL}/pokemons/${pokemonId}`;
+        return axios.delete(dataURL);
+    }
 }
