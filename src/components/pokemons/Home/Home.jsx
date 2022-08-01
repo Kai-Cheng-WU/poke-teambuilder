@@ -44,6 +44,10 @@ let Home = () => {
     const [openAddModal, setOpenAddModal] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [openEditModal, setOpenEditModal] = useState(false);
+    
+    const [currPokemonName, setCurrPokemonName] = useState(null);
+    const [currPokemonId, setCurrPokemonId] = useState(null);
+
 
 
     return (
@@ -101,11 +105,11 @@ let Home = () => {
                                                                 </Link>
                                                             </div>
                                                             <div className="col-sm-1 m-1">
-                                                                <button onClick={()=>setOpenDeleteModal(true)} className="btn btn-pokemonprofile">
+                                                                <button onClick={()=>{setCurrPokemonId(pokemon.id);setCurrPokemonName(pokemon.name);setOpenDeleteModal(true)}} className="btn btn-pokemonprofile">
                                                                     <i className='fa-solid fa-trash'/>
                                                                 </button>
-                                                            </div>   
-                                                            <DeletePokemon open={openDeleteModal} onClose={()=>{setOpenDeleteModal(false);window.location.reload()}} id={pokemon.id} pokemonName={pokemon.name}/>
+                                                            </div>
+                                                            <DeletePokemon open={openDeleteModal} onClose={()=>{setOpenDeleteModal(false);window.location.reload()}} id={currPokemonId} pokemonName={currPokemonName}/>
                                                         </div>
                                                             
                                                         <div className="row">
