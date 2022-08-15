@@ -259,6 +259,32 @@
       "ability": "dauntless-shield",
       "item": "",
       "id": "YDCk42V"
+    },
+    {
+      "name": "comfey",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/764.png",
+      "hpEV": 0,
+      "hpIV": 0,
+      "hpTotal": 0,
+      "atkEV": 0,
+      "atkIV": 0,
+      "atkTotal": 0,
+      "defEV": 0,
+      "defIV": 0,
+      "defTotal": 0,
+      "spaEV": 0,
+      "spaIV": 0,
+      "spaTotal": 0,
+      "spdEV": 0,
+      "spdIV": 0,
+      "spdTotal": 0,
+      "speEV": 0,
+      "speIV": 0,
+      "speTotal": 0,
+      "nature": "Brave",
+      "ability": "triage",
+      "item": "focus-sash",
+      "id": "CQs28vt"
     }
   ]
 }
