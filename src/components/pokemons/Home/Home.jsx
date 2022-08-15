@@ -5,6 +5,7 @@ import '../../../App.css';
 import pokeball from '../../../icons/pokeball.png'
 import AddPokemon from '../PokemonModals/AddPokemon'
 import DeletePokemon from '../PokemonModals/DeletePokemon'
+import EditPokemon from'../PokemonModals/EditPokemon'
 import {PokemonService} from "../../../services/PokemonService";
 import Spinner from '../../Spinner/Spinner';
 
@@ -100,10 +101,11 @@ let Home = () => {
                                                                 {pokemon.name}
                                                             </div>
                                                             <div className="col-sm-1 m-1">
-                                                                <Link to={'/pokemons/edit/:pokeID'} className="btn btn-pokemonprofile">
+                                                                <button onClick={()=>{setCurrPokemonId(pokemon.id);setCurrPokemonName(pokemon.name);setOpenEditModal(true)}} className="btn btn-pokemonprofile">
                                                                     <i className='fa-solid fa-pen'/>
-                                                                </Link>
+                                                                </button>
                                                             </div>
+                                                            <EditPokemon open={openEditModal} onClose={()=>setOpenEditModal(false)} id={currPokemonId} pokemonName={currPokemonName}/>
                                                             <div className="col-sm-1 m-1">
                                                                 <button onClick={()=>{setCurrPokemonId(pokemon.id);setCurrPokemonName(pokemon.name);setOpenDeleteModal(true)}} className="btn btn-pokemonprofile">
                                                                     <i className='fa-solid fa-trash'/>

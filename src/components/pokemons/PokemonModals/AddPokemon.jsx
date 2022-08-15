@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import '../../../App.css';
 import Axios from 'axios';
 import { PokemonService } from '../../../services/PokemonService';
+import { Modal, Button} from "react-bootstrap";
 
 let AddPokemon = ({open, onClose}) => {
     const [pokemonName, setPokemonName] = useState("");
@@ -334,151 +335,147 @@ let AddPokemon = ({open, onClose}) => {
     if(!open) return null
 
     return (
-        <React.Fragment>
-            <div className='overlay'>
-                <div className='modalContainer'>
-                    <div className='top-menu row mb-2 justify-content-end '>
-                        <div className='col-lg-8 mb-2'/>                    
-                        <div className='col-sm-1 mb-2'>
-                            <button onClick={onClose} className='btn btn-dark'>
-                                <i className='fa-solid fa-x'/>
-                            </button>
-                        </div>
-                        
-                    </div>
+        <Modal show={open} onHide={onClose}>
+            <Modal.Header closeButton>
+                <Modal.Title> Add Pokemon</Modal.Title>
+            </Modal.Header>
+            
+            <Modal.Body>
+                <div className='TitleSection row'>
+                        <form className="row">
+                            <div className="col mb-2">
+                                <input 
+                                    type="text" 
+                                    className="form-control border-dark card-container" 
+                                    placeholder="Enter the name of pokemon"
+                                    onChange={(event) => {
+                                        setPokemonName(event.target.value);
+                                    }}
+                                />
+                            </div>
+                            <div className="col mb-2">
+                                <button onClick={searchPokemon} className="btn btn-dark"> Search Pokemon </button>
+                            </div>
+                            <div className="col mb-2" />
+                        </form>    
+                </div>
 
-                    <div className='TitleSection row'>
-                            <form className="row">
-                                <div className="col mb-2">
-                                    <input 
-                                        type="text" 
-                                        className="form-control border-dark card-container" 
-                                        placeholder="Enter the name of pokemon"
-                                        onChange={(event) => {
-                                            setPokemonName(event.target.value);
-                                        }}
-                                    />
-                                </div>
-                                <div className="col mb-2">
-                                    <button onClick={searchPokemon} className="btn btn-dark"> Search Pokemon </button>
-                                </div>
-                                <div className="col mb-2" />
-                            </form>    
-                    </div>
-
-                    <div className='row LoadoutSection'>
-                        <div className='pokemon-img'>
-                            <img src={pokemon.img} alt="" />
-                        </div>
-                        
-                        <div className='col-md-12'>
-                            <form style={{maxWidth: "100%"}} onSubmit={submitPokeForm}>
-                                <h1>{pokemon.name}</h1>
-                                <div className='mb-2'>
-                                    <h3><i className="fa-solid fa-heart"></i>: {pokemon.base_hp} + 
-                                    <input className='evField' type="number" min="0" max="252" step="4" value={hpEV} onChange={e => setHpEV(+e.target.value)}/> + 
-                                    <input className='ivField' type="number" min="0" max="31" value={hpIV} onChange={e => setHpIV(+e.target.value)}/> =  
-                                    {hpTotal}</h3>
-                                </div>
-                                <div className='mb-2'>
-                                    <h3><i className="fa-solid fa-hand-fist"></i>: {pokemon.base_atk} + 
-                                    <input className='evField' type="number"  min="0" max="252" step="4" value={atkEV} onChange={e => setAtkEV(+e.target.value)}/> + 
-                                    <input className='ivField' type="number"  min="0" max="31" value={atkIV} onChange={e => setAtkIV(+e.target.value)}/> =  
-                                    {atkTotal}</h3>
-                                </div>
-                                <div className='mb-2'>
-                                    <h3><i className="fa-solid fa-shield-halved"></i>: {pokemon.base_def} + 
-                                    <input className='evField' type="number" min="0" max="252" step="4" value={defEV} onChange={e => setDefEV(+e.target.value)}/> + 
-                                    <input className='ivField' type="number" min="0" max="31" value={defIV} onChange={e => setDefIV(+e.target.value)}/> =  
-                                    {defTotal}</h3>
-                                </div>
-                                <div className='mb-2'>
-                                    <h3><i className="fa-solid fa-wand-sparkles"></i>: {pokemon.base_spa} + 
-                                    <input className='evField' type="number" min="0" max="252" step="4" value={spaEV} onChange={e => setSpaEV(+e.target.value)}/> + 
-                                    <input className='ivField' type="number" min="0" max="31" value={spaIV} onChange={e => setSpaIV(+e.target.value)}/> =  
-                                    {spaTotal}</h3>
-                                </div>
-                                <div className='mb-2'>
-                                    <h3><i className="fa-solid fa-circle-half-stroke"></i>: {pokemon.base_spd} + 
-                                    <input className='evField' type="number" min="0" max="252" step="4" value={spdEV} onChange={e => setSpdEV(+e.target.value)}/> + 
-                                    <input className='ivField' type="number" min="0" max="31" value={spdIV} onChange={e => setSpdIV(+e.target.value)}/> =  
-                                    {spdTotal}</h3>
-                                </div>
-                                <div className='mb-2'>
-                                    <h3><i className="fa-solid fa-person-running"></i>: {pokemon.base_spe} + 
-                                    <input className='evField' type="number" min="0" max="252" step="4" value={speEV} onChange={e => setSpeEV(+e.target.value)}/> + 
-                                    <input className='ivField' type="number" min="0" max="31" value={speIV} onChange={e => setSpeIV(+e.target.value)}/> =  
-                                    {speTotal}</h3>
-                                </div>
-                                <div className='mb-2'>
-                                    <h3><i className="fa-solid fa-masks-theater"></i>: &nbsp;&nbsp;&nbsp;&nbsp;
-                                        
-                                            <select onChange={(e) => setNature(e.target.value)}>
-                                                <option value="">Choose a nature</option>
-                                                <option value="Hardy">Hardy</option>
-                                                <option value="Lonely">Lonely</option>
-                                                <option value="Brave">Brave</option>
-                                                <option value="Adamant">Adamant</option>
-                                                <option value="Naughty">Naughty</option>
-                                                <option value="Bold">Bold</option>
-                                                <option value="Relaxed">Relaxed</option>
-                                                <option value="Impish">Impish</option>
-                                                <option value="Lax">Lax</option>
-                                                <option value="Timid">Timid</option>
-                                                <option value="Hasty">Hasty</option>
-                                                <option value="Serious">Serious</option>
-                                                <option value="Jolly">Jolly</option>
-                                                <option value="Naive">Naive</option>
-                                                <option value="Modest">Modest</option>
-                                                <option value="Mild">Mild</option>
-                                                <option value="Quiet">Quiet</option>
-                                                <option value="Bashful">Bashful</option>
-                                                <option value="Rash">Rash</option>
-                                                <option value="Calm">Calm</option>
-                                                <option value="Gentle">Gentle</option>
-                                                <option value="Sassy">Sassy</option>
-                                                <option value="Careful">Careful</option>
-                                                <option value="Quirky">Quirky</option>
-                                            </select>
-                                    </h3>
-                                </div>
-                                <div className='mb-2'> 
-                                    <h3><i className="fa-solid fa-lightbulb"/> : &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <select 
-                                        required = {true}
-                                        name = "ability"
-                                        value = {pokemon.ability}
-                                        onChange={e => setAbility(e.target.value)}
-                                        className="w-50 mb-2">
-                                        <option value="">Choose an ability</option>
-                                        {
-                                            pokemon.abilities.length > 0 && pokemon.abilities.map(ability => {
-                                                return(
-                                                    <option key={ability.ability.name}>{ability.ability.name}</option>
-                                                )
-                                            })
-                                        }                                       
-                                    </select>
-                                    </h3>
-                                </div>
-
-                                <div className='mb-2'> 
-                                    <h3><i className="fa-solid fa-bag-shopping"/> : &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <input type="text" className="w-50 mb-2" placeholder='held item' onChange={e => setItem(e.target.value)}/></h3>
-                                </div>
-                                
-                                <div className='mb-2'>
-                                    <button onClick={(e) => calculateStatsTotal(e)} className="btn btn-danger m-2"> Confirm Changes</button>
-                                    <input type='submit' className='btn btn-dark m-2' value="Add Pokemon"/>
-                                </div>
-                            </form>
-                        </div>
+                <div className='row LoadoutSection'>
+                    <div className='pokemon-img'>
+                        <img src={pokemon.img} alt="" />
                     </div>
                     
+                    <div className='col-md-12'>
+                        <form style={{maxWidth: "100%"}} onSubmit={submitPokeForm}>
+                            <h1>{pokemon.name}</h1>
+                            <div className='mb-2'>
+                                <h3><i className="fa-solid fa-heart"></i>: {pokemon.base_hp} + 
+                                <input className='evField' type="number" min="0" max="252" step="4" value={hpEV} onChange={e => setHpEV(+e.target.value)}/> + 
+                                <input className='ivField' type="number" min="0" max="31" value={hpIV} onChange={e => setHpIV(+e.target.value)}/> =  
+                                {hpTotal}</h3>
+                            </div>
+                            <div className='mb-2'>
+                                <h3><i className="fa-solid fa-hand-fist"></i>: {pokemon.base_atk} + 
+                                <input className='evField' type="number"  min="0" max="252" step="4" value={atkEV} onChange={e => setAtkEV(+e.target.value)}/> + 
+                                <input className='ivField' type="number"  min="0" max="31" value={atkIV} onChange={e => setAtkIV(+e.target.value)}/> =  
+                                {atkTotal}</h3>
+                            </div>
+                            <div className='mb-2'>
+                                <h3><i className="fa-solid fa-shield-halved"></i>: {pokemon.base_def} + 
+                                <input className='evField' type="number" min="0" max="252" step="4" value={defEV} onChange={e => setDefEV(+e.target.value)}/> + 
+                                <input className='ivField' type="number" min="0" max="31" value={defIV} onChange={e => setDefIV(+e.target.value)}/> =  
+                                {defTotal}</h3>
+                            </div>
+                            <div className='mb-2'>
+                                <h3><i className="fa-solid fa-wand-sparkles"></i>: {pokemon.base_spa} + 
+                                <input className='evField' type="number" min="0" max="252" step="4" value={spaEV} onChange={e => setSpaEV(+e.target.value)}/> + 
+                                <input className='ivField' type="number" min="0" max="31" value={spaIV} onChange={e => setSpaIV(+e.target.value)}/> =  
+                                {spaTotal}</h3>
+                            </div>
+                            <div className='mb-2'>
+                                <h3><i className="fa-solid fa-circle-half-stroke"></i>: {pokemon.base_spd} + 
+                                <input className='evField' type="number" min="0" max="252" step="4" value={spdEV} onChange={e => setSpdEV(+e.target.value)}/> + 
+                                <input className='ivField' type="number" min="0" max="31" value={spdIV} onChange={e => setSpdIV(+e.target.value)}/> =  
+                                {spdTotal}</h3>
+                            </div>
+                            <div className='mb-2'>
+                                <h3><i className="fa-solid fa-person-running"></i>: {pokemon.base_spe} + 
+                                <input className='evField' type="number" min="0" max="252" step="4" value={speEV} onChange={e => setSpeEV(+e.target.value)}/> + 
+                                <input className='ivField' type="number" min="0" max="31" value={speIV} onChange={e => setSpeIV(+e.target.value)}/> =  
+                                {speTotal}</h3>
+                            </div>
+                            <div className='mb-2'>
+                                <h3><i className="fa-solid fa-masks-theater"></i>: &nbsp;&nbsp;&nbsp;&nbsp;
+                                    
+                                        <select onChange={(e) => setNature(e.target.value)}>
+                                            <option value="">Choose a nature</option>
+                                            <option value="Hardy">Hardy</option>
+                                            <option value="Lonely">Lonely</option>
+                                            <option value="Brave">Brave</option>
+                                            <option value="Adamant">Adamant</option>
+                                            <option value="Naughty">Naughty</option>
+                                            <option value="Bold">Bold</option>
+                                            <option value="Relaxed">Relaxed</option>
+                                            <option value="Impish">Impish</option>
+                                            <option value="Lax">Lax</option>
+                                            <option value="Timid">Timid</option>
+                                            <option value="Hasty">Hasty</option>
+                                            <option value="Serious">Serious</option>
+                                            <option value="Jolly">Jolly</option>
+                                            <option value="Naive">Naive</option>
+                                            <option value="Modest">Modest</option>
+                                            <option value="Mild">Mild</option>
+                                            <option value="Quiet">Quiet</option>
+                                            <option value="Bashful">Bashful</option>
+                                            <option value="Rash">Rash</option>
+                                            <option value="Calm">Calm</option>
+                                            <option value="Gentle">Gentle</option>
+                                            <option value="Sassy">Sassy</option>
+                                            <option value="Careful">Careful</option>
+                                            <option value="Quirky">Quirky</option>
+                                        </select>
+                                </h3>
+                            </div>
+                            <div className='mb-2'> 
+                                <h3><i className="fa-solid fa-lightbulb"/> : &nbsp;&nbsp;&nbsp;&nbsp;
+                                <select 
+                                    required = {true}
+                                    name = "ability"
+                                    value = {pokemon.ability}
+                                    onChange={e => setAbility(e.target.value)}
+                                    className="w-50 mb-2">
+                                    <option value="">Choose an ability</option>
+                                    {
+                                        pokemon.abilities.length > 0 && pokemon.abilities.map(ability => {
+                                            return(
+                                                <option key={ability.ability.name}>{ability.ability.name}</option>
+                                            )
+                                        })
+                                    }                                       
+                                </select>
+                                </h3>
+                            </div>
 
+                            <div className='mb-2'> 
+                                <h3><i className="fa-solid fa-bag-shopping"/> : &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="text" className="w-50 mb-2" placeholder='held item' onChange={e => setItem(e.target.value)}/></h3>
+                            </div>
+                            
+                            <div className='mb-2'>
+                                <button onClick={(e) => calculateStatsTotal(e)} className="btn btn-danger m-2"> Confirm Changes</button>
+                                <input type='submit' className='btn btn-dark m-2' value="Add Pokemon"/>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
-        </React.Fragment>
+            </Modal.Body>
+
+            <Modal.Footer>
+                <Button variant="default" onClick={onClose}>
+                    Cancel
+                </Button>
+            </Modal.Footer>
+        </Modal>
     )
 
 };
