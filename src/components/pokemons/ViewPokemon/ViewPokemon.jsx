@@ -52,7 +52,6 @@ let ViewPokemon = () => {
     let {loading, pokemon, errorMessage} = state;
     return (
         <React.Fragment> 
-            
             {
                 loading ? <Spinner/> : <React.Fragment>
                     {getSprite(pokemon.item)}

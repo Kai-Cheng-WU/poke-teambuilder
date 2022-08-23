@@ -4,7 +4,7 @@ import {Routes, Route, Navigate} from 'react-router-dom';
 import NavBar from "./components/NavBar/NavBar";
 import Home from "./components/pokemons/Home/Home";
 import AddPokemon from "./components/pokemons/PokemonModals/AddPokemon";
-import EditPokemon from "./components/pokemons/PokemonModals/EditPokemon";
+import EditPokemon from "./components/pokemons/ViewPokemon/EditPokemon";
 import ViewPokemon from './components/pokemons/ViewPokemon/ViewPokemon';
 
 let App = () => {
@@ -16,7 +16,7 @@ let App = () => {
         <Route path={'/pokemons/home'} element={<Home/>} />
         <Route path={'/pokemons/add'} element={<AddPokemon/>} />
         <Route path={'/pokemons/view/:pokemonId'} element={<ViewPokemon/>} />
-        <Route path={'/pokemons/edit/:pokemomId'} element={<EditPokemon/>} />
+        <Route path={'/pokemons/edit/:pokemonId'} element={<EditPokemon/>} />
       </Routes>
 
     </React.Fragment>

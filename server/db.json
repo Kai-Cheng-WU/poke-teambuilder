@@ -285,6 +285,32 @@
       "ability": "triage",
       "item": "focus-sash",
       "id": "CQs28vt"
+    },
+    {
+      "name": "celebi",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/251.png",
+      "hpEV": 12,
+      "hpIV": 0,
+      "hpTotal": 161,
+      "atkEV": 0,
+      "atkIV": 0,
+      "atkTotal": 115,
+      "defEV": 0,
+      "defIV": 0,
+      "defTotal": 94,
+      "spaEV": 0,
+      "spaIV": 0,
+      "spaTotal": 105,
+      "spdEV": 0,
+      "spdIV": 0,
+      "spdTotal": 105,
+      "speEV": 0,
+      "speIV": 0,
+      "speTotal": 105,
+      "nature": "Lonely",
+      "ability": "natural-cure",
+      "item": "iron-ball",
+      "id": "UWzOXU-"
     }
   ]
 }
