@@ -1,7 +1,6 @@
-![](images/gurdurr.png)
+![](images/teambuilder.png)
 
 
-# Under Construction ... 🚧 🦺 🔨 
 ________________________________________________________
 
 # Getting Started with Create React App
